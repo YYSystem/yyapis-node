@@ -13,10 +13,10 @@
 
 ## 事前準備
 
-- [git](https://git-scm.com/downloads)
-- [Node.js](https://nodejs.org/ja/) (推奨バージョン 22, Volta で管理されています)
-- [<u>開発者コンソール</u>](https://api-web.yysystem2021.com) の `yysystem.audioclassification.proto`、API キーとエンドポイント ID
-- **\[Mac の場合のみ\]** [Homebrew](https://brew.sh/)
+- [git](https://git-scm.com/downloads) - ソースコード管理システム
+- [Node.js](https://nodejs.org/ja/) (推奨バージョン 22, Volta で管理されています) - Volta を使用する場合、事前インストールは不要です。
+- [<u>開発者コンソール</u>](https://api-web.yysystem2021.com) の `yysystem.audioclassification.proto`、 `API キー` と `エンドポイント ID`
+- **\[Mac の場合のみ\]** [Homebrew](https://brew.sh/) - Mac 用パッケージマネージャー
 - **\[Windows の場合のみ\]** WSL Linux(Ubuntu)開発環境
 
 ### 参考記事
@@ -65,6 +65,20 @@ cd yyapis-node/quickstarts/audio-classification/mic-stream-sample
 
 ```bash
 yyapis-node/quickstarts/audio-classification/mic-stream-sample/protos/yysystem.audioclassification.proto # ← ここに配置する
+```
+
+## [任意] Volta を使用して Node.js のバージョンを管理する
+
+1. [Volta](https://volta.sh/) をインストールします。
+
+```bash
+curl https://get.volta.sh | bash
+```
+
+2. Volta を有効化して、Node.js のバージョンをインストールします。
+
+```bash
+volta install node@22
 ```
 
 ## npm パッケージのインストール
