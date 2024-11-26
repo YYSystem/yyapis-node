@@ -1,56 +1,67 @@
-# Node サンプル
+# Quickstarts > Audio Classification > MIC Stream Sample
 
-このサンプルアプリケーションは、Node.js を使用して YYAPIs の音響分類 API を利用する方法を示しています。
+このサンプルアプリケーションは、Node.js を使用して YYAPIs の音響分類サービス を利用する方法を示しています。
 
 ## 特長
 
 - YYAPIs のリアルタイム音響分類を実施します
-- gRPC サーバーにマイク音声ストリームを送信します
+- gRPC 接続でサーバーにマイク音声ストリームを送信します
 - 型安全のために `Typescript` を使用しています
 - 開発ツールとして `nodemon`, `tsx`, と `eslint` を使用しています
 - API キーとエンドポイント ID を `.env` ファイルに設定します
-- マイク音声ストリームを `SoX` で録音します
+- マイク音声ストリームは `SoX` で録音します
 
 ## 事前準備
 
 - [git](https://git-scm.com/downloads)
 - [Node.js](https://nodejs.org/ja/) (推奨バージョン 22, Volta で管理されています)
-- [PNPM](https://pnpm.io/) (推奨バージョン 9, Volta で管理されています)
-- [Sox](https://sourceforge.net/projects/sox/files/sox/14.4.1/) (推奨バージョン 14.4.1)
-- [<u>開発者コンソール</u>](https://api-web.yysystem2021.com) から `yysystem.audioclassification.proto`、API キーとエンドポイント ID を取得する
+- [<u>開発者コンソール</u>](https://api-web.yysystem2021.com) の `yysystem.audioclassification.proto`、API キーとエンドポイント ID
+- **\[Mac の場合のみ\]** [Homebrew](https://brew.sh/)
+- **\[Windows の場合のみ\]** WSL Linux(Ubuntu)開発環境
 
-### SoX 14.4.1 インストールする
+### 参考記事
 
-\[Mac の場合\]
+- [音響分類サービスの使い方](https://github.com/YYSystem/yyapis-docs/wiki/ClassifyStream)
+- [Windows WSL で Linux 開発環境構築: Winget と VS Code を活用したセットアップ](https://qiita.com/natsuki3624/items/5fe96960563164db84d2)
+
+### SoX 14.4.2 インストールする
+
+#### Mac の場合
 
 ```bash
-$ brew install sox
+brew install sox
 ```
 
-\[Windows の場合\]
+<!-- \[Windows の場合\]
 
 [<u>Sox
 14.4.1</u>](https://sourceforge.net/projects/sox/files/sox/14.4.1/)から sox-14.4.1-win32.exe をダウンロードする。
 
 sox-14.4.1-win32.exe を実行してインストールする。
 
-システム環境変数の Path に C:\Program Files (x86)\sox-14-4-1 を追加する。
+システム環境変数の Path に C:\Program Files (x86)\sox-14-4-1 を追加する。 -->
+
+#### Linux(Ubuntu) の場合
+
+```bash
+sudo apt install sox libsox-fmt-all
+```
 
 ## サンプルコードのダウンロード
 
-git を使用して、サンプルコードをダウンロードします。
+1. git を使用して、任意のディレクトリにサンプルコードをダウンロードします。
 
 ```bash
 git clone https://github.com/YYSystem/yyapis-node.git
 ```
 
-ディレクトリを移動します。
+2. clone したプロジェクトのディレクトリを移動します。
 
 ```bash
 cd yyapis-node/quickstarts/audio-classification/mic-stream-sample
 ```
 
-YYAPIs 開発者コンソールから音響分類 API の proto ファイル(`yysystem.audioclassification.proto`)をダウンロードして、 `protos` ディレクトリに配置します。
+3. YYAPIs 開発者コンソールから音響分類 API の proto ファイル(`yysystem.audioclassification.proto`)をダウンロードして、 `protos` ディレクトリに配置します。
 
 ```bash
 yyapis-node/quickstarts/audio-classification/mic-stream-sample/protos/yysystem.audioclassification.proto # ← ここに配置する
@@ -58,43 +69,57 @@ yyapis-node/quickstarts/audio-classification/mic-stream-sample/protos/yysystem.a
 
 ## npm パッケージのインストール
 
-**\[Mac の場合\]**
+1. corepack を確認します。
 
 ```bash
-$ corepack enable
-$ pnpm install
+corepack --version
 ```
 
-**\[Windows の場合\]**
+2. corepack がなければインストールします。
+
+```bash
+npm -g install corepack
+```
+
+3. corepack を有効化して、必要な npm パッケージをインストールします。
+
+```bash
+corepack enable
+pnpm install
+```
+
+<!-- **\[Windows の場合\]**
 
 ```powershell
 > Set-ExecutionPolicy RemoteSigned
 > corepack enable
 > pnpm install
-```
+``` -->
 
 ## proto ファイルのコンパイル
 
-**\[Mac の場合\]**
-
 ```bash
-$ chmod +x proto-gen.sh
-$ pnpm proto:gen
+pnpm proto:gen
 ```
 
-**\[Windows の場合\]**
+実行権限エラーが発生する場合:
+
+```bash
+chmod +x proto-gen.sh
+```
+
+で実行権限を変更してから再度 `pnpm proto:gen` を実行してください。
+
+<!-- **\[Windows の場合\]**
 
 ```powershell
 > icacls proto-gen.sh /grant Everyone:RX
 > pnpm proto:gen
-```
+``` -->
 
 ## サンプルアプリの実行
 
-[<u>開発者コンソール</u>](https://api-web.yysystem2021.com)
-にログインして、API キーとエンドポイント ID を取得します。
-
-ディレクトリの直下に.env ファイルを作成します。
+1. 開発者コンソールで取得した API キーとエンドポイント ID を基に .env ファイルを作成します。
 
 ```bash
 yyapis-node/quickstarts/audio-classification/mic-stream-sample/.env # ← ここに配置する
@@ -107,7 +132,7 @@ API_KEY=YOUR_API_KEY # 開発者コンソールで取得したAPIキー
 ENDPOINT_ID=YOUR_ENDPOINT_ID # 開発者コンソールで取得したエンドポイントID
 ```
 
-下記コマンドを実行して、サンプルアプリを起動します。
+2. 下記コマンドを実行して、サンプルアプリを起動します。
 
 ```bash
 $ pnpm dev
@@ -117,9 +142,9 @@ $ pnpm dev
 
 ### 音響分類の開始
 
-サンプルアプリを起動した後、‘Enter’キーを入力すると、音響分類が開始されます。
+アプリを起動後、`Enter` キーを押すと、音響分類が開始されます。
 
-結果の例、 defaultResults に人の声(`Speech`)を検知されている場合:
+例: 音響分類結果
 
 ```bash
 Stream data:  {
