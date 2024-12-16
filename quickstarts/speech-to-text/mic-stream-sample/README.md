@@ -80,6 +80,19 @@ corepack enable
 pnpm install
 ```
 
+4. pnpmのバージョンを確認する
+
+```bash
+pnpm --version
+```
+
+バージョンが確認できない場合:
+
+```bash
+volta pin pnpm@latest
+export VOLTA_FEATURE_PNPM=1
+```
+
 ## protoファイルのコンパイル
 
 ```bash
