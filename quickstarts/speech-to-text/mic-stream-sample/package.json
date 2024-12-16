@@ -1,11 +1,12 @@
 {
   "name": "node",
-  "version": "1.0.0",
+  "version": "22.12.0",
   "main": "index.js",
   "license": "MIT",
   "scripts": {
     "start": "tsnd --respawn --quiet src/main",
-    "proto:gen": "./proto-gen.sh"
+    "proto:gen": "./proto-gen.sh",
+    "preinstall": "npx only-allow pnpm"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.9.2",
@@ -18,8 +19,8 @@
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.2.2"
   },
+  "packageManager": "pnpm@9.15.0+sha512.76e2379760a4328ec4415815bcd6628dee727af3779aaa4c914e3944156c4299921a89f976381ee107d41f12cfa4b66681ca9c718f0668fa0831ed4c6d8ba56c",
   "volta": {
-    "node": "20.6.1",
-    "yarn": "1.22.19"
+    "node": "22.12.0"
   }
 }
