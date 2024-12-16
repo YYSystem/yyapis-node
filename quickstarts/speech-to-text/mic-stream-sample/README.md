@@ -51,6 +51,8 @@ yyapis-node/quickstarts/speech-to-text/mic-stream-sample/protos/yysystem.proto #
 
 ```bash
 curl https://get.volta.sh | bash
+export VOLTA_HOME=$HOME/.volta
+export PATH="$VOLTA_HOME/bin:$PATH"
 ```
 
 2. Volta を有効化して、Node.js のバージョンをインストールします。
@@ -89,8 +91,9 @@ pnpm --version
 バージョンが確認できない場合:
 
 ```bash
-volta pin pnpm@latest
 export VOLTA_FEATURE_PNPM=1
+source ~/. zshrc
+volta pin pnpm@latest
 ```
 
 ## protoファイルのコンパイル
