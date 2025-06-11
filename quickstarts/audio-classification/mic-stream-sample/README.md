@@ -83,37 +83,23 @@ volta install node@22
 
 ## npm パッケージのインストール
 
-1. corepack を確認します。
+必要な npm パッケージをインストールします。
 
 ```bash
-corepack --version
-```
-
-2. corepack がなければインストールします。
-
-```bash
-npm -g install corepack
-```
-
-3. corepack を有効化して、必要な npm パッケージをインストールします。
-
-```bash
-corepack enable
-pnpm install
+npm install
 ```
 
 <!-- **\[Windows の場合\]**
 
 ```powershell
 > Set-ExecutionPolicy RemoteSigned
-> corepack enable
-> pnpm install
+> npm run install
 ``` -->
 
 ## proto ファイルのコンパイル
 
 ```bash
-pnpm proto:gen
+npm run proto:gen
 ```
 
 実行権限エラーが発生する場合:
@@ -122,13 +108,13 @@ pnpm proto:gen
 chmod +x proto-gen.sh
 ```
 
-で実行権限を変更してから再度 `pnpm proto:gen` を実行してください。
+で実行権限を変更してから再度 `npm run proto:gen` を実行してください。
 
 <!-- **\[Windows の場合\]**
 
 ```powershell
 > icacls proto-gen.sh /grant Everyone:RX
-> pnpm proto:gen
+> npm run proto:gen
 ``` -->
 
 ## サンプルアプリの実行
@@ -149,7 +135,7 @@ ENDPOINT_ID=YOUR_ENDPOINT_ID # 開発者コンソールで取得したエンド�
 2. 下記コマンドを実行して、サンプルアプリを起動します。
 
 ```bash
-$ pnpm dev
+$ npm run dev
 ```
 
 ## サンプルアプリの操作

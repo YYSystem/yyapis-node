@@ -2,6 +2,7 @@
   "name": "mic-stream-sample",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch src --ext ts --exec tsx src/index.ts",
@@ -26,10 +27,8 @@
     "typescript": "^5.7.2",
     "typescript-eslint": "^8.15.0"
   },
-  "packageManager": "pnpm@9.14.2+sha256.06e65a4965baff6d6097f9c8f75c35f6d420974dbc03d775009056a69edfd271",
   "volta": {
-    "node": "22.11.0",
-    "pnpm": "9.14.2"
+    "node": "22.16.0"
   },
   "dependencies": {
     "@grpc/grpc-js": "^1.12.2",

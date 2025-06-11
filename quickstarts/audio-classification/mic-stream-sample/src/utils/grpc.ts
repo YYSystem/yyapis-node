@@ -1,8 +1,11 @@
-import {resolve} from 'path'
+import {resolve, dirname} from 'path'
+import {fileURLToPath} from 'url'
 import {credentials, loadPackageDefinition} from '@grpc/grpc-js'
 import {loadSync} from '@grpc/proto-loader'
 import {ProtoGrpcType} from '../../protos/generated/yysystem.audioclassification'
 
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 const protoFile = resolve(__dirname, `../../protos/yysystem.audioclassification.proto`)
 
 const packageDefinition = loadSync(protoFile)
