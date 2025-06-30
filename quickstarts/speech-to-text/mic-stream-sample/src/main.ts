@@ -3,12 +3,12 @@ import {record} from 'node-record-lpcm16'
 import {createInterface} from 'readline'
 import {ClientDuplexStream, Metadata} from '@grpc/grpc-js'
 
-import {yyapisApiKey, yyapisEndpoint, yyapisPort} from './util/process.env'
+import {autoDetectLanguageCodes, yyapisApiKey, yyapisEndpoint, yyapisPort} from './util/process.env'
 import {creds, isStatusObject, loadYYSystemPackage} from './util/grpc'
-import {StreamingConfig} from '../proto/generated/yysystem/StreamingConfig'
-import {StreamResponse__Output} from '../proto/generated/yysystem/StreamResponse'
+import {StreamingConfig} from '@protos/generated/yysystem/StreamingConfig'
+import {StreamResponse__Output} from '@protos/generated/yysystem/StreamResponse'
 import {Writable} from 'stream'
-import {StreamRequest} from '../proto/generated/yysystem/StreamRequest'
+import {StreamRequest} from '@protos/generated/yysystem/StreamRequest'
 
 const sampleRateHertz = 16000
 
@@ -65,9 +65,13 @@ const main = async () => {
       const streamingConfig: StreamingConfig = {
         encoding: 'LINEAR16',
         sampleRateHertz,
-        languageCode: 4,
         model: 10,
         enableInterimResults: true,
+      }
+      if (autoDetectLanguageCodes && autoDetectLanguageCodes.length > 0) {
+        streamingConfig.autoDetectLanguageCodes = autoDetectLanguageCodes
+      } else {
+        streamingConfig.languageCode = 4
       }
       call.write({streamingConfig})
       call.on('data', (chunk: StreamResponse__Output) => {
@@ -83,10 +87,12 @@ const main = async () => {
         const {isFinal, transcript} = result
         if (!isFinal) {
           console.info({logtag, message: 'interim result', isFinal, transcript})
+          return
         }
         console.info({logtag, message: 'final result', isFinal, transcript})
+        return
       })
-      call.on('error', (e) => {
+      call.on('error', (e: unknown) => {
         console.error({logtag, message: 'call error event', e})
         if (isStatusObject(e)) {
           const {code} = e

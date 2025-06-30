@@ -6,10 +6,10 @@ import {
   StatusObject,
 } from '@grpc/grpc-js'
 import {loadSync} from '@grpc/proto-loader'
-import {ProtoGrpcType} from '../../proto/generated/yysystem'
+import {ProtoGrpcType} from '@protos/generated/yysystem'
 import {yyapisSsl} from './process.env'
 
-const protoFile = resolve(__dirname, '../../proto/yysystem.proto')
+const protoFile = resolve(__dirname, '../../protos/yysystem.proto')
 
 export const loadYYSystemPackage = async () => {
   const packageDefinition = loadSync(protoFile)

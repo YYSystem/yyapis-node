@@ -63,43 +63,15 @@ volta install node@22
 
 ## npm パッケージのインストール
 
-1. corepack を確認します。
 
 ```bash
-corepack --version
-```
-
-2. corepack がなければインストールします。
-
-```bash
-npm -g install corepack
-```
-
-3. corepack を有効化して、必要な npm パッケージをインストールします。
-
-```bash
-corepack enable
-pnpm install
-```
-
-4. pnpmのバージョンを確認する
-
-```bash
-pnpm --version
-```
-
-バージョンが確認できない場合:
-
-```bash
-export VOLTA_FEATURE_PNPM=1
-source ~/. zshrc
-volta pin pnpm@latest
+npm install
 ```
 
 ## protoファイルのコンパイル
 
 ```bash
-pnpm proto:gen
+npm run proto:gen
 ```
 
 実行権限エラーが発生する場合:
@@ -108,7 +80,7 @@ pnpm proto:gen
 chmod +x proto-gen.sh
 ```
 
-で実行権限を変更してから再度 `pnpm proto:gen` を実行してください。
+で実行権限を変更してから再度 `npm run proto:gen` を実行してください。
 
 ## サンプルアプリの実行
 
@@ -133,7 +105,7 @@ YOUR_API_KEYに開発者コンソールから取得したAPIキーの値を使�
 下記コマンドを実行して、サンプルアプリを開始します。
 
 ```bash
-$ pnpm start
+$ npm run dev
 ```
 
 ## サンプルアプリの操作
