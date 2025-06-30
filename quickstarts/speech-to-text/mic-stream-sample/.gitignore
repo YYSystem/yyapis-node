@@ -4,3 +4,4 @@ node_modules
 protos/generated
 protos/*.proto
 .env
+dictionary.json
